@@ -9,25 +9,27 @@
 <%
 
 
-String url ="jdbc:mysql://localhost/myweb?user=root&password=ski2live&useUnicode=true&characterEncoding=utf-8";
+String url ="jdbc:mysql://localhost:3306/myweb?serverTimezone=CTT&useSSL=false&" +
+                                   "user=root&password=ski2live";
 
 Connection conn= DriverManager.getConnection(url);
 
-Statement stmt=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE
+Statement stmt=conn.createStatement();
 
-);
+String sql="SELECT * FROM WebUser";
 
-String sql="select * from tt";
+ResultSet rs    = stmt.executeQuery(sql);
+while(rs.next()){%>
 
-ResultSet rs=stmt.executeQuery(sql);
+step:<%=rs.getString(1)%>
 
-%>
+context:<%=rs.getString(2)%><br><br>
 
+<%}%>
 
 <%out.print("Congratulations!!! JSP connect MYSQL IS OK!!");%>
 
-<%rs.close();
-
+<%
 stmt.close();
 
 conn.close();
