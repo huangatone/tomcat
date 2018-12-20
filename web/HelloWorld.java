@@ -1,7 +1,7 @@
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-
+import java.util.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -65,6 +65,7 @@ System.out.println("Opened database successfully");
   {
       // 设置响应内容类型
       response.setContentType("text/html");
+      
 
       // 实际的逻辑是在这里
       PrintWriter out = response.getWriter();
@@ -87,6 +88,15 @@ System.out.println("Opened database successfully");
                                    rs.getString("password") + "</h1>");
                 
             }
+
+            Enumeration e = request.getHeaderNames();
+         while (e.hasMoreElements()) {
+            String headerName = (String)e.nextElement();
+            String headerValue = request.getHeader(headerName);
+            out.println("<tr><td>" + headerName + "</td>");
+            out.println("<td>" + headerValue + "</td></tr>");
+         }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

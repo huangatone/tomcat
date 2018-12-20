@@ -9,8 +9,8 @@
 <%
 
 
-String url ="jdbc:mysql://localhost:3306/myweb?serverTimezone=CTT&useSSL=false&" +
-                                   "user=root&password=ski2live";
+String url ="jdbc:mysql://http://10.211.55.14:3306/myweb?serverTimezone=CTT&useSSL=false&" +
+                                   "user=rong&password=ski2live";
 
 Connection conn= DriverManager.getConnection(url);
 
